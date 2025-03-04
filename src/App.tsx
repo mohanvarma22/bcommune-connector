@@ -13,6 +13,7 @@ import CoreConnect from "./pages/CoreConnect";
 import PostTeamListing from "./pages/PostTeamListing";
 import B2BSpace from "./pages/B2BSpace";
 import PostB2BProject from "./pages/PostB2BProject";
+import CompanyProfile from "./pages/CompanyProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/core-connect/post" element={<PostTeamListing />} />
           <Route path="/b2b" element={<B2BSpace />} />
           <Route path="/b2b/post" element={<PostB2BProject />} />
+          <Route path="/company/:id" element={<CompanyProfile />} />
           <Route path="/settings" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

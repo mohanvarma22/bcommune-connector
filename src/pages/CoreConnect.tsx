@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const CoreConnect = () => {
   const navigate = useNavigate();
 
-  const teamListings = [
+  const companies = [
     {
-      id: "core-1",
-      title: "Tech Co-Founder for SaaS Startup",
+      id: "company-1",
+      name: "Tech Co-Founder for SaaS Startup",
       description: "Looking for a technical co-founder with experience in cloud infrastructure and backend development to join an early-stage SaaS startup focused on AI-powered analytics.",
       requiredRoles: ["CTO", "Backend Developer", "DevOps Engineer"],
       commitment: "Full-time",
@@ -26,8 +26,8 @@ const CoreConnect = () => {
       stage: "Idea Validation"
     },
     {
-      id: "core-2",
-      title: "Creative Director for Design Agency",
+      id: "company-2",
+      name: "Creative Director for Design Agency",
       description: "Established design studio looking for a visionary Creative Director to lead our team and bring fresh perspectives to our client projects.",
       requiredRoles: ["Creative Director", "UI/UX Designer"],
       commitment: "Full-time",
@@ -42,8 +42,8 @@ const CoreConnect = () => {
       stage: "Established Business"
     },
     {
-      id: "core-3",
-      title: "Marketing Lead for Health Tech Startup",
+      id: "company-3",
+      name: "Marketing Lead for Health Tech Startup",
       description: "Health tech startup seeking a marketing expert to join our core team and lead our go-to-market strategy for our new digital health platform.",
       requiredRoles: ["CMO", "Growth Marketer", "Content Strategist"],
       commitment: "Full-time",
@@ -58,8 +58,8 @@ const CoreConnect = () => {
       stage: "Pre-seed"
     },
     {
-      id: "core-4",
-      title: "Founding Team for Fintech Platform",
+      id: "company-4",
+      name: "Founding Team for Fintech Platform",
       description: "Building a team to revolutionize personal finance with AI. Looking for passionate individuals to join as founding team members.",
       requiredRoles: ["CTO", "Lead Developer", "Product Manager", "UI/UX Designer"],
       commitment: "Full-time",
@@ -81,11 +81,11 @@ const CoreConnect = () => {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">CORE Connect</h1>
-            <p className="text-muted-foreground mt-1">Build your founding team or join one</p>
+            <p className="text-muted-foreground mt-1">Connect with startups and companies</p>
           </div>
           <Button className="gap-2" onClick={() => navigate('/core-connect/post')}>
             <PlusCircle size={16} />
-            Post Team Listing
+            Post a Team Listing
           </Button>
         </div>
 
@@ -112,12 +112,13 @@ const CoreConnect = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-          {teamListings.map((listing, index) => (
-            <TeamListingCard 
-              key={listing.id}
-              listing={listing}
+          {companies.map((company, index) => (
+            <CompanyCard 
+              key={company.id}
+              company={company}
               style={{ animationDelay: `${index * 100}ms` }}
               className="animate-fade-in"
+              onClick={() => navigate(`/company/${company.id}`)}
             />
           ))}
         </div>
@@ -126,10 +127,10 @@ const CoreConnect = () => {
   );
 };
 
-interface TeamListingCardProps {
-  listing: {
+interface CompanyCardProps {
+  company: {
     id: string;
-    title: string;
+    name: string;
     description: string;
     requiredRoles: string[];
     commitment: string;
@@ -147,8 +148,8 @@ interface TeamListingCardProps {
   style?: React.CSSProperties;
 }
 
-const TeamListingCard: React.FC<TeamListingCardProps> = ({ 
-  listing, 
+const CompanyCard: React.FC<CompanyCardProps> = ({ 
+  company, 
   className,
   style 
 }) => {
@@ -161,18 +162,18 @@ const TeamListingCard: React.FC<TeamListingCardProps> = ({
       style={style}
     >
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-xl font-semibold">{listing.title}</h3>
+        <h3 className="text-xl font-semibold">{company.name}</h3>
         <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-          {listing.stage}
+          {company.stage}
         </span>
       </div>
       
-      <p className="text-muted-foreground mb-4">{listing.description}</p>
+      <p className="text-muted-foreground mb-4">{company.description}</p>
       
       <div className="mb-4">
         <h4 className="text-sm font-medium mb-2">Roles Needed:</h4>
         <div className="flex flex-wrap gap-2">
-          {listing.requiredRoles.map((role, index) => (
+          {company.requiredRoles.map((role, index) => (
             <span 
               key={index} 
               className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md"
@@ -186,28 +187,28 @@ const TeamListingCard: React.FC<TeamListingCardProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
         <div className="flex items-center gap-2">
           <Briefcase className="h-4 w-4 text-primary" />
-          <span className="text-sm">{listing.commitment}</span>
+          <span className="text-sm">{company.commitment}</span>
         </div>
         <div className="flex items-center gap-2">
           <MapPin className="h-4 w-4 text-primary" />
-          <span className="text-sm">{listing.location}</span>
+          <span className="text-sm">{company.location}</span>
         </div>
         <div className="flex items-center gap-2">
           <Calendar className="h-4 w-4 text-primary" />
-          <span className="text-sm">Posted {listing.postedAt}</span>
+          <span className="text-sm">Posted {company.postedAt}</span>
         </div>
       </div>
       
       <div className="flex justify-between items-center mt-4 pt-4 border-t border-border">
         <div className="flex items-center gap-3">
           <img 
-            src={listing.postedBy.photo} 
-            alt={listing.postedBy.name} 
+            src={company.postedBy.photo} 
+            alt={company.postedBy.name} 
             className="h-10 w-10 rounded-full object-cover"
           />
           <div>
-            <p className="font-medium">{listing.postedBy.name}</p>
-            <p className="text-sm text-muted-foreground">{listing.postedBy.role}</p>
+            <p className="font-medium">{company.postedBy.name}</p>
+            <p className="text-sm text-muted-foreground">{company.postedBy.role}</p>
           </div>
         </div>
         <div className="flex gap-2">
