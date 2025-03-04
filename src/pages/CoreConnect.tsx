@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -146,20 +147,23 @@ interface CompanyCardProps {
   };
   className?: string;
   style?: React.CSSProperties;
+  onClick?: () => void;  // Added onClick property to fix the TypeScript error
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ 
   company, 
   className,
-  style 
+  style,
+  onClick 
 }) => {
   return (
     <div 
       className={cn(
-        "rounded-xl bg-card p-5 shadow-soft hover:shadow-md transition-all duration-200 border border-border/50",
+        "rounded-xl bg-card p-5 shadow-soft hover:shadow-md transition-all duration-200 border border-border/50 cursor-pointer",
         className
       )}
       style={style}
+      onClick={onClick}
     >
       <div className="flex items-start justify-between mb-3">
         <h3 className="text-xl font-semibold">{company.name}</h3>
