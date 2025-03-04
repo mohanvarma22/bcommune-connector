@@ -1,11 +1,13 @@
-
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, MessageSquare, Users, Search, Filter, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 const CoreConnect = () => {
+  const navigate = useNavigate();
+
   const teamListings = [
     {
       id: "core-1",
@@ -81,7 +83,7 @@ const CoreConnect = () => {
             <h1 className="text-3xl font-bold">CORE Connect</h1>
             <p className="text-muted-foreground mt-1">Build your founding team or join one</p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => navigate('/core-connect/post')}>
             <PlusCircle size={16} />
             Post Team Listing
           </Button>
@@ -124,7 +126,6 @@ const CoreConnect = () => {
   );
 };
 
-// Team Listing Card component
 interface TeamListingCardProps {
   listing: {
     id: string;

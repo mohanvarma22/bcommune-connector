@@ -1,11 +1,13 @@
-
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, FileText, Building, Clock, DollarSign, Search, Filter, MapPin, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 const B2BSpace = () => {
+  const navigate = useNavigate();
+
   const b2bProjects = [
     {
       id: "b2b-1",
@@ -85,7 +87,7 @@ const B2BSpace = () => {
             <h1 className="text-3xl font-bold">B2B Space</h1>
             <p className="text-muted-foreground mt-1">Business-to-business projects and opportunities</p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => navigate('/b2b/post')}>
             <PlusCircle size={16} />
             Post B2B Project
           </Button>
@@ -128,7 +130,6 @@ const B2BSpace = () => {
   );
 };
 
-// B2B Project Card component
 interface B2BProjectCardProps {
   project: {
     id: string;

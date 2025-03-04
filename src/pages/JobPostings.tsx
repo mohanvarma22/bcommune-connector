@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import JobPostCard, { JobPostCardProps } from '@/components/dashboard/JobPostCard';
@@ -7,9 +6,7 @@ import { Input } from '@/components/ui/input';
 import { 
   PlusCircle, 
   Search, 
-  Filter,
-  SlidersHorizontal,
-  CheckSquare
+  Filter
 } from 'lucide-react';
 import {
   Select,
@@ -25,8 +22,8 @@ import {
 } from '@/components/ui/popover';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 
-// Mock data
 const initialJobs: JobPostCardProps[] = [
   {
     id: '1',
@@ -91,6 +88,7 @@ const initialJobs: JobPostCardProps[] = [
 ];
 
 const JobPostings: React.FC = () => {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState<JobPostCardProps[]>(initialJobs);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string[]>([]);
@@ -132,7 +130,7 @@ const JobPostings: React.FC = () => {
               Create and manage your job listings to find the perfect candidates.
             </p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2" onClick={() => navigate('/jobs/post')}>
             <PlusCircle className="h-4 w-4" />
             <span>New Job Post</span>
           </Button>

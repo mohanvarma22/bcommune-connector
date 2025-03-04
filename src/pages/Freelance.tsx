@@ -1,11 +1,13 @@
-
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, Filter, Briefcase, Clock, MapPin, DollarSign, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 const Freelance = () => {
+  const navigate = useNavigate();
+
   const freelanceProjects = [
     {
       id: "fp-1",
@@ -77,7 +79,7 @@ const Freelance = () => {
             <h1 className="text-3xl font-bold">Freelance Projects</h1>
             <p className="text-muted-foreground mt-1">Find and post freelance opportunities</p>
           </div>
-          <Button className="gap-2">
+          <Button className="gap-2" onClick={() => navigate('/freelance/post')}>
             <PlusCircle size={16} />
             Post a Project
           </Button>
@@ -120,7 +122,6 @@ const Freelance = () => {
   );
 };
 
-// Freelance Project Card component
 interface FreelanceProjectCardProps {
   project: {
     id: string;
