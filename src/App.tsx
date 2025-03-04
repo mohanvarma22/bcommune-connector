@@ -6,6 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import JobPostings from "./pages/JobPostings";
+import Freelance from "./pages/Freelance";
+import CoreConnect from "./pages/CoreConnect";
+import B2BSpace from "./pages/B2BSpace";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,10 +23,9 @@ const App = () => (
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/jobs" element={<JobPostings />} />
-          {/* These routes will be implemented later */}
-          <Route path="/freelance" element={<Dashboard />} />
-          <Route path="/core-connect" element={<Dashboard />} />
-          <Route path="/b2b" element={<Dashboard />} />
+          <Route path="/freelance" element={<Freelance />} />
+          <Route path="/core-connect" element={<CoreConnect />} />
+          <Route path="/b2b" element={<B2BSpace />} />
           <Route path="/settings" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
