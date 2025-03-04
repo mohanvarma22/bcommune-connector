@@ -13,6 +13,7 @@ interface StatCardProps {
     isPositive: boolean;
   };
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const StatCard: React.FC<StatCardProps> = ({
@@ -22,9 +23,13 @@ const StatCard: React.FC<StatCardProps> = ({
   description,
   trend,
   className,
+  style,
 }) => {
   return (
-    <div className={cn("relative overflow-hidden rounded-xl bg-card p-6 shadow-soft transition-all duration-200 hover:shadow-md", className)}>
+    <div 
+      className={cn("relative overflow-hidden rounded-xl bg-card p-6 shadow-soft transition-all duration-200 hover:shadow-md", className)}
+      style={style}
+    >
       <div className="flex justify-between items-start">
         <div>
           <p className="text-sm font-medium text-muted-foreground">{title}</p>

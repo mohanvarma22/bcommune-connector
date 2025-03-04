@@ -21,6 +21,7 @@ export interface JobPostCardProps {
   applications: number;
   postedAt: string;
   className?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
 }
 
@@ -34,6 +35,7 @@ const JobPostCard: React.FC<JobPostCardProps> = ({
   applications,
   postedAt,
   className,
+  style,
   onClick,
 }) => {
   const statusColor = {
@@ -48,6 +50,7 @@ const JobPostCard: React.FC<JobPostCardProps> = ({
         "rounded-xl bg-card p-5 shadow-soft hover:shadow-md transition-all duration-200 border border-border/50",
         className
       )}
+      style={style}
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-3">
